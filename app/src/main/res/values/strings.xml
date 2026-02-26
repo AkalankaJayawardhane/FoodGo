@@ -1,3 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">FoodGo</string>
+    
+    <!-- Splash Screen -->
+    <string name="splash_title">FoodGo</string>
+    <string name="splash_tagline">Delicious food at your doorstep</string>
+    
+    <!-- Login -->
+    <string name="login_title">Welcome Back</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="register_link">Register</string>
+    <string name="login_success">Login successful</string>
+    <string name="login_failed">Invalid email or password</string>
+    <string name="email_required">Email is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="invalid_email">Invalid email format</string>
+    
+    <!-- Register -->
+    <string name="register_title">Create Account</string>
+    <string name="name_hint">Full Name</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="register_button">Register</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="login_link">Login</string>
+    <string name="register_success">Registration successful</string>
+    <string name="register_failed">Registration failed</string>
+    <string name="name_required">Name is required</string>
+    <string name="password_mismatch">Passwords do not match</string>
+    <string name="email_exists">Email already registered</string>
+    
+    <!-- Home -->
+    <string name="menu_title">FoodGo</string>
+    <string name="search_hint">Search</string>
+    <string name="promotions_title">Promotions</string>
+    <string name="promotion_offer">Today\'s offer</string>
+    <string name="promotion_text">Free box of Fries</string>
+    <string name="promotion_details">on all orders above 1k</string>
+    <string name="popular_title">Popular</string>
+    
+    <!-- Categories -->
+    <string name="category_all">All</string>
+    <string name="category_burger">Burger</string>
+    <string name="category_wings">Wings</string>
+    <string name="category_pizza">Pizza</string>
+    
+    <!-- Food Detail -->
+    <string name="food_detail_title">Food Detail</string>
+    <string name="quantity_label">Quantity</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="added_to_cart">Added to cart</string>
+    <string name="price_format">%d RS</string>
+    
+    <!-- Cart -->
+    <string name="cart_title">Cart</string>
+    <string name="cart_empty">Your cart is empty</string>
+    <string name="total_label">Total:</string>
+    <string name="proceed_checkout">Proceed to Checkout</string>
+    <string name="item_removed">Item removed from cart</string>
+    <string name="cart_updated">Cart updated</string>
+    
+    <!-- Checkout -->
+    <string name="checkout_title">Checkout</string>
+    <string name="delivery_address_label">Delivery Address</string>
+    <string name="delivery_address_hint">Enter your delivery address</string>
+    <string name="order_summary_label">Order Summary</string>
+    <string name="place_order">Place Order</string>
+    <string name="address_required">Please enter delivery address</string>
+    
+    <!-- Order Success -->
+    <string name="order_success_title">Order Placed Successfully!</string>
+    <string name="order_success_message">Your order has been placed successfully. We will deliver it soon.</string>
+    <string name="return_home">Return to Home</string>
+    
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="logout_button">Logout</string>
+    <string name="logout_success">Logged out successfully</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_profile">Profile</string>
+    
+    <!-- Common -->
+    <string name="rs_symbol">RS</string>
+    <string name="back">Back</string>
+    <string name="remove">Remove</string>
 </resources>
