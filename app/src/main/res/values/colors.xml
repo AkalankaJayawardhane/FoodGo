@@ -28,10 +28,10 @@
     <color name="button_green">#4CAF50</color>
     <color name="button_red">#F44336</color>
     
-    <!-- Status Colors -->
-    <color name="success_green">#4CAF50</color>
+    <!-- Status Colors
+    <color name="success_green">#4CAF50</color>-->
     <color name="error_red">#F44336</color>
-    
+
     <!-- Divider -->
     <color name="divider">#E0E0E0</color>
 </resources>
