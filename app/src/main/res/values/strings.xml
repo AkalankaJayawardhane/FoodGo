@@ -54,6 +54,8 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="added_to_cart">Added to cart</string>
     <string name="price_format">%d RS</string>
+    <string name="beef_burger">Beef Burger</string>
+    <string name="delicious_beef_burger_with_fresh_ingredients">Delicious beef burger with fresh ingredients</string>
     
     <!-- Cart -->
     <string name="cart_title">Cart</string>
@@ -91,4 +93,5 @@
     <string name="rs_symbol">RS</string>
     <string name="back">Back</string>
     <string name="remove">Remove</string>
+
 </resources>
