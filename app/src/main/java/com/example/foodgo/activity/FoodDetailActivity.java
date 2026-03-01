@@ -23,7 +23,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     private ImageView ivFoodImage, btnDecrement, btnIncrement;
     private TextView tvFoodName, tvFoodPrice, tvFoodDescription, tvQuantity;
-    private Button btnAddToCart;
+    //private Button btnAddToCart;
 
     private DatabaseHelper dbHelper;
     private FoodItem foodItem;
@@ -45,7 +45,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         tvQuantity = findViewById(R.id.tvQuantity);
         btnDecrement = findViewById(R.id.btnDecrement);
         btnIncrement = findViewById(R.id.btnIncrement);
-        btnAddToCart = findViewById(R.id.btnAddToCart);
+       // btnAddToCart = findViewById(R.id.btnAddToCart);
 
         // Get food ID from intent
         int foodId = getIntent().getIntExtra("food_id", -1);

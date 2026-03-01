@@ -10,6 +10,8 @@ import com.example.foodgo.models.FoodItem;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -148,6 +150,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
+// ========== FOOD ITEM CRUD OPERATIONS ==========
+
+    /**
+     * Get all food items
+     */
+    public List<FoodItem> getAllFoodItems() {
+        List<FoodItem> foodItems = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + TABLE_FOOD_ITEMS;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                FoodItem item = new FoodItem(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getString(4),
+                        cursor.getInt(5));
+                foodItems.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return foodItems;
+    }
+
+    /**
+     * Get food items by category
+     */
+    public List<FoodItem> getFoodItemsByCategory(String category) {
+        List<FoodItem> foodItems = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FOOD_ITEMS,
+                null,
+                COL_FOOD_CATEGORY + "=?",
+                new String[] { category },
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                FoodItem item = new FoodItem(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getString(4),
+                        cursor.getInt(5));
+                foodItems.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return foodItems;
+    }
+
+    /**
+     * Get food item by ID
+     */
     public FoodItem getFoodItemById(int foodId) {
         SQLiteDatabase db = this.getReadableDatabase();
         FoodItem item = null;
@@ -155,7 +221,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_FOOD_ITEMS,
                 null,
                 COL_ID + "=?",
-                new String[]{String.valueOf(foodId)},
+                new String[] { String.valueOf(foodId) },
                 null, null, null);
 
         if (cursor != null && cursor.moveToFirst()) {
