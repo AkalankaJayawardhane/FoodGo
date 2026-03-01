@@ -1,10 +1,12 @@
-package FoodGo;
+package com.example.foodgo.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.foodgo.models.FoodItem;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,11 +17,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_USERS = "users";
+    private static final String TABLE_FOOD_ITEMS = "food_items";
 
     private static final String COL_ID = "id";
     private static final String COL_NAME = "name";
     private static final String COL_EMAIL = "email";
     private static final String COL_PASSWORD = "password";
+
+    private static final String COL_FOOD_NAME = "name";
+    private static final String COL_FOOD_DESCRIPTION = "description";
+    private static final String COL_FOOD_PRICE = "price";
+    private static final String COL_FOOD_CATEGORY = "category";
+    private static final String COL_FOOD_IMAGE = "image_resource";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,12 +44,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_PASSWORD + " TEXT)";
 
         db.execSQL(CREATE_TABLE);
+
+        String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD_ITEMS + " ("
+                + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL_FOOD_NAME + " TEXT, "
+                + COL_FOOD_DESCRIPTION + " TEXT, "
+                + COL_FOOD_PRICE + " INTEGER, "
+                + COL_FOOD_CATEGORY + " TEXT, "
+                + COL_FOOD_IMAGE + " INTEGER"
+                + ")";
+
+        db.execSQL(CREATE_FOOD_TABLE);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD_ITEMS);
         onCreate(db);
+    }
+
+
+    private void insertFoodItem(SQLiteDatabase db, String name, String description, int price, String category,
+                                int imageResource) {
+        ContentValues values = new ContentValues();
+        values.put(COL_FOOD_NAME, name);
+        values.put(COL_FOOD_DESCRIPTION, description);
+        values.put(COL_FOOD_PRICE, price);
+        values.put(COL_FOOD_CATEGORY, category);
+        values.put(COL_FOOD_IMAGE, imageResource);
+        db.insert(TABLE_FOOD_ITEMS, null, values);
     }
 
     // 🔐 SHA-256 Hashing Function
@@ -112,5 +146,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return exists;
+    }
+
+    public FoodItem getFoodItemById(int foodId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        FoodItem item = null;
+
+        Cursor cursor = db.query(TABLE_FOOD_ITEMS,
+                null,
+                COL_ID + "=?",
+                new String[]{String.valueOf(foodId)},
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            item = new FoodItem(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getString(4),
+                    cursor.getInt(5));
+            cursor.close();
+        }
+
+        db.close();
+        return item;
     }
 }
