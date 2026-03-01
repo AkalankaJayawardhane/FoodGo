@@ -1,4 +1,4 @@
-package FoodGo;
+package com.example.foodgo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.foodgo.R;
+import com.example.foodgo.database.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        // Initialize views
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -31,21 +35,21 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
+        // Login Button Click
         btnLogin.setOnClickListener(v -> {
 
             String email = editEmail.getText().toString().trim();
             String password = editPassword.getText().toString().trim();
 
-            if (TextUtils.isEmpty(email) ||
-                    TextUtils.isEmpty(password)) {
-
+            // Check empty fields
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                 Toast.makeText(LoginActivity.this,
                         "Please fill all fields",
                         Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Email format validation
+            // Validate email format
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(LoginActivity.this,
                         "Enter a valid email",
@@ -59,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,
                         "Login Successful",
                         Toast.LENGTH_SHORT).show();
+
+                // Go to Home Activity (Change to your actual activity)
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(LoginActivity.this,
                         "Invalid Email or Password",
@@ -66,8 +75,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtRegisterLink.setOnClickListener(v ->
-                startActivity(new Intent(LoginActivity.this,
-                        FoodGo.RegisterActivity.class)));
+        // Register Text Click
+        txtRegisterLink.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
     }
 }

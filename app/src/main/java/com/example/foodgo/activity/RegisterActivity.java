@@ -1,4 +1,4 @@
-package FoodGo;
+package com.example.foodgo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.foodgo.R;
+import com.example.foodgo.database.DatabaseHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
