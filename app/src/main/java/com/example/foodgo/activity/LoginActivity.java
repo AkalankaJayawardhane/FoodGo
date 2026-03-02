@@ -1,6 +1,7 @@
 package com.example.foodgo.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences; // ✅ ADDED
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -64,7 +65,16 @@ public class LoginActivity extends AppCompatActivity {
                         "Login Successful",
                         Toast.LENGTH_SHORT).show();
 
-                // Go to Home Activity (Change to your actual activity)
+                // ✅ ADDED — SAVE LOGIN STATE
+                SharedPreferences prefs =
+                        getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("isLoggedIn", true);
+                editor.apply();
+                // ✅ END ADD
+
+                // Go to Home Activity
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
