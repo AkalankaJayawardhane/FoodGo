@@ -3,6 +3,7 @@ package com.example.foodgo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,10 +26,20 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent =
-                        new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
+                SharedPreferences prefs =
+                        getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
 
+                boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+                Intent intent;
+
+                if (isLoggedIn) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
+                }
+
+                startActivity(intent);
                 finish(); // close splash so user can't go back
 
             }
