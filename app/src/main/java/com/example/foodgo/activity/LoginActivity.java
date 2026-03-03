@@ -58,23 +58,26 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
+
             boolean valid = db.checkUser(email, password);
 
             if (valid) {
+
                 Toast.makeText(LoginActivity.this,
                         "Login Successful",
                         Toast.LENGTH_SHORT).show();
 
-                // ✅ ADDED — SAVE LOGIN STATE
+                // 🔥 Get userId
+                int userId = db.getUserIdByEmail(email);
+
                 SharedPreferences prefs =
                         getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
 
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean("isLoggedIn", true);
+                editor.putInt("userId", userId);   // 👈 ADD THIS LINE
                 editor.apply();
-                // ✅ END ADD
 
-                // Go to Home Activity
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
