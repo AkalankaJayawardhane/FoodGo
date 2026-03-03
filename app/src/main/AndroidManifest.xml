@@ -4,35 +4,59 @@
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/FoodGo">
+        android:theme="@style/FoodGo"
+        tools:targetApi="31">
+
+        <!-- Splash Screen - Launcher Activity -->
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="false" />
-
+        <!-- Login Activity -->
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FoodGo" />
 
+        <!-- Register Activity -->
         <activity
             android:name=".activity.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FoodGo" />
+
+        <!-- Main Activity with Bottom Navigation -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="false"
+            android:theme="@style/FoodGo" />
+
+        <!-- Food Detail Activity -->
+        <activity
+            android:name=".activity.FoodDetailActivity"
+            android:exported="false"
+            android:theme="@style/FoodGo" />
+
+        <!-- Checkout Activity -->
+        <activity
+            android:name=".activity.CheckoutActivity"
+            android:exported="false"
+            android:theme="@style/FoodGo" />
+
+<!--        &lt;!&ndash; Order Success Activity &ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name=".activity.OrderSuccessActivity"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/FoodGo" />-->
 
     </application>
 
