@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  * Main Activity with Bottom Navigation
  * Hosts fragments for Home, Search, Cart, and Profile
  */
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;

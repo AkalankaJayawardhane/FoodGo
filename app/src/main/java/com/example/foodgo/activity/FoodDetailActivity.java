@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodgo.R;
 import com.example.foodgo.database.DatabaseHelper;
 import com.example.foodgo.models.FoodItem;
-import com.example.foodgo.database.DatabaseHelper;
 
 /**
  * Food Detail Activity - Detailed view of a food item
@@ -28,6 +27,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private FoodItem foodItem;
     private int quantity = 1;
+    private Button btnAddToCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         tvQuantity = findViewById(R.id.tvQuantity);
         btnDecrement = findViewById(R.id.btnDecrement);
         btnIncrement = findViewById(R.id.btnIncrement);
-       // btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnAddToCart = findViewById(R.id.btnAddToCart);
 
         // Get food ID from intent
         int foodId = getIntent().getIntExtra("food_id", -1);
@@ -72,14 +72,14 @@ public class FoodDetailActivity extends AppCompatActivity {
             }
         });
 
-    /*   // Add to cart button
+       // Add to cart button
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addToCart();
             }
         });
-        */
+
     }
 
     /**
@@ -97,7 +97,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
 
-   /* private void addToCart() {
+   private void addToCart() {
         SharedPreferences prefs = getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);
 
@@ -107,6 +107,5 @@ public class FoodDetailActivity extends AppCompatActivity {
             finish(); // Return to previous screen
         }
     }
-    */
 
 }
