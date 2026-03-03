@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.foodgo.models.CartItem;
+import com.example.foodgo.models.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -77,6 +78,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ")";
 
         db.execSQL(CREATE_CART_TABLE);
+
+        populateFoodItems(db);
+
     }
 
 
@@ -342,7 +346,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /// Get Cart Items with quantity
-    // Get Cart Items (Correct Version)
     public List<CartItem> getCartItems(int userId) {
 
         List<CartItem> cartItems = new ArrayList<>();
@@ -445,6 +448,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return total;
+    }
+
+    public User getUserById(int userId) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_USERS + " WHERE id=?",
+                new String[]{String.valueOf(userId)});
+
+        User user = null;
+
+        if (cursor.moveToFirst()) {
+            user = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_EMAIL)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_PASSWORD))
+            );
+        }
+
+        cursor.close();
+        db.close();
+
+        return user;
     }
 
 
