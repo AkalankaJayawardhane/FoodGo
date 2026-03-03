@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.foodgo.models.FoodItem;
+import com.example.foodgo.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,13 +22,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_USERS = "users";
-    private static final String TABLE_FOOD_ITEMS = "food_items";
-
     private static final String COL_ID = "id";
     private static final String COL_NAME = "name";
     private static final String COL_EMAIL = "email";
     private static final String COL_PASSWORD = "password";
 
+
+    private static final String TABLE_FOOD_ITEMS = "food_items";
     private static final String COL_FOOD_NAME = "name";
     private static final String COL_FOOD_DESCRIPTION = "description";
     private static final String COL_FOOD_PRICE = "price";
@@ -87,17 +88,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-    private void insertFoodItem(SQLiteDatabase db, String name, String description, int price, String category,
-                                int imageResource) {
-        ContentValues values = new ContentValues();
-        values.put(COL_FOOD_NAME, name);
-        values.put(COL_FOOD_DESCRIPTION, description);
-        values.put(COL_FOOD_PRICE, price);
-        values.put(COL_FOOD_CATEGORY, category);
-        values.put(COL_FOOD_IMAGE, imageResource);
-        db.insert(TABLE_FOOD_ITEMS, null, values);
-    }
 
     // 🔐 SHA-256 Hashing Function
     public String hashPassword(String password) {
@@ -188,6 +178,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return userId;
+    }
+
+
+
+    private void populateFoodItems(SQLiteDatabase db) {
+        // Burger
+        insertFoodItem(db, "Beef Burger", "Juicy beef patty with lettuce, tomato, and cheese", 600, "Burger",
+                R.drawable.beef_burger);
+        insertFoodItem(db, "Chicken Burger", "Crispy chicken with mayo and lettuce", 550, "Burger",
+                R.drawable.chicken_burger);
+        insertFoodItem(db, "Cheese Burger", "Double cheese with beef patty", 650, "Burger",
+                R.drawable.cheese_burger);
+
+        // Wings
+        insertFoodItem(db, "BBQ Wings", "Smoky BBQ chicken wings", 500, "Wings", R.drawable.bbq_wings);
+        insertFoodItem(db, "Buffalo Wings", "Spicy buffalo sauce wings", 530, "Wings",
+                R.drawable.buffalo_wings);
+        insertFoodItem(db, "Honey Glazed Wings", "Sweet honey glazed wings", 550, "Wings",
+                R.drawable.honey_wings);
+
+        // Pizza
+        insertFoodItem(db, "Margarita Pizza", "Classic tomato and mozzarella", 1000, "Pizza",
+                R.drawable.margarita_pizza);
+        insertFoodItem(db, "Pepperoni Pizza", "Loaded with pepperoni slices", 1200, "Pizza",
+                R.drawable.pepperoni_pizza);
+        insertFoodItem(db, "Veggie Pizza", "Fresh vegetables and cheese", 950, "Pizza",
+                R.drawable.veggie_pizza);
+        insertFoodItem(db, "Supreme Pizza", "All toppings included", 1400, "Pizza", R.drawable.supreme_pizza);
+    }
+
+    private void insertFoodItem(SQLiteDatabase db, String name, String description, int price, String category,
+                                int imageResource) {
+        ContentValues values = new ContentValues();
+        values.put(COL_FOOD_NAME, name);
+        values.put(COL_FOOD_DESCRIPTION, description);
+        values.put(COL_FOOD_PRICE, price);
+        values.put(COL_FOOD_CATEGORY, category);
+        values.put(COL_FOOD_IMAGE, imageResource);
+        db.insert(TABLE_FOOD_ITEMS, null, values);
     }
 
 // ========== FOOD ITEM CRUD OPERATIONS ==========
