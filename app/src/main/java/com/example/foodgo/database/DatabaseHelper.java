@@ -20,7 +20,7 @@ import com.example.foodgo.models.User;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "FoodOrderDB";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String TABLE_USERS = "users";
     private static final String COL_ID = "id";
@@ -79,6 +79,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_CART_TABLE);
 
+        // Orders table
+        String CREATE_ORDERS_TABLE = "CREATE TABLE orders (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id INTEGER, " +
+                "total_price INTEGER, " +
+                "address TEXT, " +
+                "order_date TEXT" +
+                ")";
+        db.execSQL(CREATE_ORDERS_TABLE);
+
         populateFoodItems(db);
 
     }
@@ -89,6 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD_ITEMS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CART);
+        db.execSQL("DROP TABLE IF EXISTS orders");
         onCreate(db);
     }
 
@@ -473,6 +484,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return user;
+    }
+
+    public void saveOrder(int userId, int totalPrice, String address) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("user_id", userId);
+        values.put("total_price", totalPrice);
+        values.put("address", address);
+        values.put("order_date",
+                new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        .format(new java.util.Date()));
+
+        db.insert("orders", null, values);
+
+        db.close();
     }
 
 

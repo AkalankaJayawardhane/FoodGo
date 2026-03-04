@@ -109,7 +109,12 @@ public class CheckoutActivity extends AppCompatActivity {
             return;
         }
 
-        // Clear cart after order
+        int total = dbHelper.getCartTotal(userId);
+
+        // Save order
+        dbHelper.saveOrder(userId, total, address);
+
+        // Clear cart
         dbHelper.clearCart(userId);
 
         Toast.makeText(this, "Order placed successfully!", Toast.LENGTH_SHORT).show();
