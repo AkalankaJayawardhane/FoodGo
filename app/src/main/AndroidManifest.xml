@@ -52,11 +52,11 @@
             android:exported="false"
             android:theme="@style/FoodGo" />
 
-<!--        &lt;!&ndash; Order Success Activity &ndash;&gt;-->
-<!--        <activity-->
-<!--            android:name=".activity.OrderSuccessActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/FoodGo" />-->
+        <activity
+            android:name=".activity.OrderSuccessActivity"
+            android:exported="false"
+            android:theme="@style/FoodGo" />
+
 
     </application>
 
