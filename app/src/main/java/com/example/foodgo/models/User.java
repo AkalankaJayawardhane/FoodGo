@@ -1,9 +1,6 @@
 package com.example.foodgo.models;
 
-/**
- * User model class representing a user in the system
- * Used for authentication and profile management
- */
+// User Model - Represents a user in the application
 public class User {
     private int id;
     private String name;

@@ -17,10 +17,9 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 
-/**
- * Adapter for food items grid RecyclerView
- * Displays food items with image, name, price, and add button
- */
+
+ //Adapter for food items grid RecyclerView
+ //Displays food items with image, name, price, and add button
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
     private Context context;

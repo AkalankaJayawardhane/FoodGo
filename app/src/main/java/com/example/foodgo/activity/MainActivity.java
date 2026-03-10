@@ -16,10 +16,9 @@ import com.example.foodgo.fragments.HomeFragment;
 import com.example.foodgo.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/**
- * Main Activity with Bottom Navigation
- * Hosts fragments for Home, Search, Cart, and Profile
- */
+
+ // Main Activity with Bottom Navigation
+ // Hosts fragments for Home, Search, Cart, and Profile
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.nav_home) {
                     loadFragment(new HomeFragment());
                     return true;
-                } else if (itemId == R.id.nav_search) {
+
+
                     // Navigate to Home layout and focus search
+                } else if (itemId == R.id.nav_search) {
                     Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
                     if (currentFragment instanceof HomeFragment) {
                         ((HomeFragment) currentFragment).focusSearch();
@@ -58,9 +59,13 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(homeFragment);
                     }
                     return true;
+
+                    // Navigate to Cart layout
                 } else if (itemId == R.id.nav_cart) {
                     loadFragment(new CartFragment());
                     return true;
+
+                    // Navigate to Profile layout
                 } else if (itemId == R.id.nav_profile) {
                     loadFragment(new ProfileFragment());
                     return true;
@@ -70,15 +75,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Load default fragment (Home)
+        // This ensures that when the app starts up, the HomeFragment is loaded by default
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment());
         }
     }
 
-    /**
-     * Check if user is logged in, redirect to Login if not
-     */
+
+     //Check if user is logged in, redirect to Login if not
     private void checkLoginStatus() {
         SharedPreferences prefs = getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
@@ -91,9 +95,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Load fragment into container
-     */
+
+     //Load fragment into container
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment);

@@ -14,10 +14,9 @@ import com.example.foodgo.R;
 
 import java.util.List;
 
-/**
- * Adapter for horizontal category RecyclerView
- * Displays food categories (All, Burger, Wings, Pizza)
- */
+
+ // Adapter for horizontal category RecyclerView
+ // Displays food categories (All, Burger, Wings, Pizza)
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     private Context context;
@@ -86,9 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categories.size();
     }
 
-    /**
-     * Get category image resource
-     */
+     // Get category image resource
     private int getCategoryImage(String category) {
         switch (category) {
             case "Burger":

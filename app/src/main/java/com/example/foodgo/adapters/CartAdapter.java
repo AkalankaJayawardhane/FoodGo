@@ -15,10 +15,8 @@ import com.example.foodgo.models.CartItem;
 
 import java.util.List;
 
-/**
- * Adapter for cart items RecyclerView
- * Displays cart items with quantity controls
- */
+ // Adapter for cart items RecyclerView
+ // Displays cart items with quantity controls
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private Context context;
@@ -37,11 +35,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.listener = listener;
     }
 
-    public void updateList(List<CartItem> newList) {
-        this.cartItems = newList;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(view);
     }
 
+    // Bind cart item data to views
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         CartItem cartItem = cartItems.get(position);
@@ -104,10 +98,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartItems.size();
     }
 
+    // ViewHolder for cart items
     static class CartViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCartFoodImage, btnIncrement, btnDecrement, btnRemove;
         TextView tvCartFoodName, tvCartFoodPrice, tvQuantity;
 
+        // Initialize views
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             ivCartFoodImage = itemView.findViewById(R.id.ivCartFoodImage);

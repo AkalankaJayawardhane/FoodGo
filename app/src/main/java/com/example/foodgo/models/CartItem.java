@@ -2,10 +2,7 @@ package com.example.foodgo.models;
 
 import com.example.foodgo.models.FoodItem;
 
-/**
- * CartItem model class representing an item in the shopping cart
- * Links a user to a food item with quantity information
- */
+// Cart Item - Represents an item in the user's shopping cart
 public class CartItem {
     private int id;
     private int userId;
@@ -62,11 +59,7 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    /**
-     * Calculate subtotal for this cart item
-     *
-     * @return price * quantity
-     */
+    // Other methods
     public int getSubtotal() {
         return foodItem.getPrice() * quantity;
     }

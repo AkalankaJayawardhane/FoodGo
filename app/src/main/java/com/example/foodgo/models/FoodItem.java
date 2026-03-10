@@ -11,6 +11,7 @@ public class FoodItem {
     public FoodItem() {
     }
 
+    // Constructor with all fields
     public FoodItem(String name, String description, int price, String category, int imageResource) {
         this.name = name;
         this.description = description;
@@ -19,6 +20,7 @@ public class FoodItem {
         this.imageResource = imageResource;
     }
 
+    // Constructor with ID
     public FoodItem(int id, String name, String description, int price, String category, int imageResource) {
         this.id = id;
         this.name = name;
@@ -77,6 +79,7 @@ public class FoodItem {
         this.imageResource = imageResource;
     }
 
+    // Other methods
     @Override
     public String toString() {
         return "FoodItem{" +

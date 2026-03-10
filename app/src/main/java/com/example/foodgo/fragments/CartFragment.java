@@ -26,10 +26,9 @@ import com.example.foodgo.models.CartItem;
 
 import java.util.List;
 
-/**
- * Cart Fragment - Shopping cart screen
- * Displays cart items with quantity controls and total price
- */
+
+ // Cart Fragment - Shopping cart screen
+ // Displays cart items with quantity controls and total price
 public class CartFragment extends Fragment {
 
     private RecyclerView rvCartItems;
@@ -79,9 +78,7 @@ public class CartFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Load cart items from database
-     */
+    // Load cart items from database
     private void loadCartItems() {
         if (userId != -1) {
             cartItems = dbHelper.getCartItems(userId);
@@ -101,9 +98,7 @@ public class CartFragment extends Fragment {
         }
     }
 
-    /**
-     * Set up cart RecyclerView
-     */
+    // Set up RecyclerView
     private void setupRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rvCartItems.setLayoutManager(layoutManager);
@@ -137,9 +132,7 @@ public class CartFragment extends Fragment {
         rvCartItems.setAdapter(cartAdapter);
     }
 
-    /**
-     * Update total price display
-     */
+    // Update total price
     private void updateTotalPrice() {
         int total = dbHelper.getCartTotal(userId);
         tvTotalPrice.setText(total + " RS");

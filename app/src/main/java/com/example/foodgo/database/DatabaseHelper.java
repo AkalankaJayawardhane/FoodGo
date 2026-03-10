@@ -16,11 +16,12 @@ import java.util.List;
 
 import com.example.foodgo.models.CartItem;
 import com.example.foodgo.models.User;
+import com.example.foodgo.models.Order;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "FoodOrderDB";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     private static final String TABLE_USERS = "users";
     private static final String COL_ID = "id";
@@ -81,10 +82,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Orders table
         String CREATE_ORDERS_TABLE = "CREATE TABLE orders (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "user_id INTEGER, " +
-                "total_price INTEGER, " +
-                "address TEXT, " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "user_id INTEGER," +
+                "total_price INTEGER," +
+                "address TEXT," +
+                "foods TEXT," +
                 "order_date TEXT" +
                 ")";
         db.execSQL(CREATE_ORDERS_TABLE);
@@ -104,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // 🔐 SHA-256 Hashing Function
+    // Hashing Function
     public String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -486,21 +488,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public void saveOrder(int userId, int totalPrice, String address) {
+    public void saveOrder(int userId, int total, String address, String foods) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put("user_id", userId);
-        values.put("total_price", totalPrice);
+        values.put("total_price", total);
         values.put("address", address);
-        values.put("order_date",
-                new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                        .format(new java.util.Date()));
+        values.put("foods", foods);
+        values.put("order_date", getCurrentDate());
 
         db.insert("orders", null, values);
 
         db.close();
+    }
+
+
+    //Order History
+    public List<Order> getOrdersByUser(int userId) {
+
+        List<Order> orders = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM orders WHERE user_id=? ORDER BY id DESC",
+                new String[]{String.valueOf(userId)});
+
+        if (cursor.moveToFirst()) {
+
+            do {
+
+                Order order = new Order(
+                        cursor.getInt(0),   // id
+                        cursor.getInt(1),   // user_id
+                        cursor.getInt(2),   // total_price
+                        cursor.getString(3),// address
+                        cursor.getString(4),// date
+                        cursor.getString(5) // foods
+                );
+
+                orders.add(order);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return orders;
+    }
+
+    private String getCurrentDate() {
+        java.text.SimpleDateFormat sdf =
+                new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        return sdf.format(new java.util.Date());
     }
 
 
