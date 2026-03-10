@@ -21,10 +21,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
-/**
- * Checkout Activity - Order confirmation screen
- * Displays order summary and delivery address input
- */
+
+ // Checkout Activity - Order confirmation screen
+ // Displays order summary and delivery address input
+
 public class CheckoutActivity extends AppCompatActivity {
 
     private RecyclerView rvOrderSummary;
@@ -66,9 +66,9 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Load order summary
-     */
+
+     //Load order summary
+
     private void loadOrderSummary() {
         if (userId != -1) {
             cartItems = dbHelper.getCartItems(userId);
@@ -96,10 +96,10 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Place order
-     */
+
+     //Place order
     private void placeOrder() {
+
         String address = etDeliveryAddress.getText().toString().trim();
 
         // Validate address
@@ -111,8 +111,21 @@ public class CheckoutActivity extends AppCompatActivity {
 
         int total = dbHelper.getCartTotal(userId);
 
-        // Save order
-        dbHelper.saveOrder(userId, total, address);
+        // Get cart items
+        List<CartItem> cartItems = dbHelper.getCartItems(userId);
+
+        // Build food list
+        StringBuilder foods = new StringBuilder();
+
+        for (CartItem item : cartItems) {
+            foods.append(item.getFoodItem().getName())
+                    .append(" x")
+                    .append(item.getQuantity())
+                    .append("\n");
+        }
+
+        // Save order with foods
+        dbHelper.saveOrder(userId, total, address, foods.toString());
 
         // Clear cart
         dbHelper.clearCart(userId);

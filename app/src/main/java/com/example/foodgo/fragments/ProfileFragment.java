@@ -19,21 +19,22 @@ import com.example.foodgo.R;
 import com.example.foodgo.activity.LoginActivity;
 import com.example.foodgo.database.DatabaseHelper;
 import com.example.foodgo.models.User;
+import com.example.foodgo.activity.OrderHistoryActivity;
 
-/**
- * Profile Fragment - User profile screen
- * Displays user information and logout option
- */
+// Profile Fragment - Displays user profile and logout functionality
 public class ProfileFragment extends Fragment {
 
     private TextView tvUserName, tvUserEmail;
-    private Button btnLogout;
+    private Button btnLogout, btnOrderHistory;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //Order History Button
+        btnOrderHistory = view.findViewById(R.id.btnOrderHistory);
 
         // Initialize views
         tvUserName = view.findViewById(R.id.tvUserName);
@@ -51,12 +52,20 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        btnOrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), OrderHistoryActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         return view;
     }
 
-    /**
-     * Load user data from SharedPreferences
-     */
+    // Load user data from database
     private void loadUserData() {
 
         SharedPreferences prefs = getContext()
@@ -76,9 +85,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    /**
-     * Logout user and navigate to Login screen
-     */
+    // Logout function
     private void logout() {
         // Clear session
         SharedPreferences prefs = getContext().getSharedPreferences("FoodAppPrefs", Context.MODE_PRIVATE);
@@ -93,5 +100,8 @@ public class ProfileFragment extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
+
+
     }
+
 }

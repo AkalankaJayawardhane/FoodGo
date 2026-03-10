@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgo.R;
 
-/**
- * Splash Activity - Shows app logo then opens MainActivity
- */
+
+//Splash Activity - Shows app logo then opens MainActivity
+
 public class SplashActivity extends AppCompatActivity {
 
     private static final int SPLASH_DELAY = 2000; // 2 seconds
@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 Intent intent;
 
+                // Check if user is logged in
                 if (isLoggedIn) {
                     intent = new Intent(SplashActivity.this, MainActivity.class);
                 } else {

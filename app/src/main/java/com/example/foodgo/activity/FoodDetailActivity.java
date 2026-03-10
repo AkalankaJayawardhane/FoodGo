@@ -14,10 +14,10 @@ import com.example.foodgo.R;
 import com.example.foodgo.database.DatabaseHelper;
 import com.example.foodgo.models.FoodItem;
 
-/**
- * Food Detail Activity - Detailed view of a food item
- * Allows user to view details and add item to cart with quantity
- */
+
+ // Food Detail Activity - Detailed view of a food item
+ //Allows user to view details and add item to cart with quantity
+
 public class FoodDetailActivity extends AppCompatActivity {
 
     private ImageView ivFoodImage, btnDecrement, btnIncrement;
@@ -82,9 +82,8 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Load food details from database
-     */
+
+      //Load food details from database
     private void loadFoodDetails(int foodId) {
         foodItem = dbHelper.getFoodItemById(foodId);
 
@@ -96,7 +95,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         }
     }
 
-
+    //Add to cart
    private void addToCart() {
         SharedPreferences prefs = getSharedPreferences("FoodAppPrefs", MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);

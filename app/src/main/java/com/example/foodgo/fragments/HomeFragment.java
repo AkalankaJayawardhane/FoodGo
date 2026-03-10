@@ -33,10 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Home Fragment - Main menu screen
- * Displays categories, promotions, and popular food items
- */
+// Home Fragment - Displays popular food items
 public class HomeFragment extends Fragment {
 
     private RecyclerView rvCategories, rvPopularItems;
@@ -103,9 +100,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Set up categories RecyclerView
-     */
+    // Set up categories RecyclerView
     private void setupCategoriesRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
                 false);
@@ -122,17 +117,13 @@ public class HomeFragment extends Fragment {
         rvCategories.setAdapter(categoryAdapter);
     }
 
-    /**
-     * Load food items from database
-     */
+    // Load food items from database
     private void loadFoodItems() {
         allFoodItems = dbHelper.getAllFoodItems();
         setupPopularItemsRecyclerView();
     }
 
-    /**
-     * Set up popular items RecyclerView
-     */
+    // Set up popular items RecyclerView
     private void setupPopularItemsRecyclerView() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rvPopularItems.setLayoutManager(gridLayoutManager);
@@ -156,9 +147,7 @@ public class HomeFragment extends Fragment {
         rvPopularItems.setAdapter(foodAdapter);
     }
 
-    /**
-     * Filter food items by category
-     */
+    // Filter food items by category
     private void filterFoodItems(String category) {
         List<FoodItem> filteredItems;
 
@@ -180,9 +169,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    /**
-     * Filter food items by search query
-     */
+    // Filter food items by search query
     private void filterFoodItemsBySearch(String query) {
         List<FoodItem> filteredList = new ArrayList<>();
 
@@ -204,9 +191,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    /**
-     * Add food item to cart
-     */
+    // Add Food items to cart
     private void addToCart(FoodItem foodItem) {
         SharedPreferences prefs = getContext().getSharedPreferences("FoodAppPrefs", Context.MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);
@@ -223,9 +208,7 @@ public class HomeFragment extends Fragment {
         // Reload data if needed
     }
 
-    /**
-     * Focus on search bar and show keyboard
-     */
+    // Focus search
     public void focusSearch() {
         if (etSearch != null) {
             etSearch.requestFocus();

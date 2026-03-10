@@ -25,10 +25,7 @@ import com.example.foodgo.database.DatabaseHelper;
 
 import java.util.List;
 
-/**
- * Food List Fragment - Displays filtered food items
- * Shows vertical list of food items for a specific category
- */
+// Food List Fragment - Displays list of food items
 public class FoodListFragment extends Fragment {
 
     private RecyclerView rvFoodList;
@@ -68,9 +65,7 @@ public class FoodListFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Load food items by category
-     */
+    // Load food items from database
     private void loadFoodItems() {
         List<FoodItem> foodItems;
 
@@ -103,9 +98,7 @@ public class FoodListFragment extends Fragment {
         rvFoodList.setAdapter(foodAdapter);
     }
 
-    /**
-     * Add food item to cart
-     */
+    // Add Food items to cart
     private void addToCart(FoodItem foodItem) {
         SharedPreferences prefs = getContext().getSharedPreferences("FoodAppPrefs", Context.MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);

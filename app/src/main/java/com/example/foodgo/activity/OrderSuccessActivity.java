@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgo.R;
 
-/**
- * Order Success Activity - Order confirmation screen
- * Displays success message and option to return to home
- */
+
+ //Order Success Activity - Order confirmation screen
+ //Displays success message and option to return to home
+
 public class OrderSuccessActivity extends AppCompatActivity {
 
     private Button btnReturnHome;
