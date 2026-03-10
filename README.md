@@ -24,7 +24,7 @@ This project was developed as part of an **IT undergraduate coursework project**
 
 ## 🧱 System Architecture
 
-The app follows a simple **Android MVC-style architecture**.
+The application is designed using an **MVC (Model–View–Controller) architectural pattern** adapted for Android development.
 
 **Main Components**
 
@@ -140,11 +140,13 @@ git clone https://github.com/AkalankaJayawardhane/FoodGo.git
 
 ---
 
-## 👨‍💻 Contributors
+## 👨‍💻 Team Members
 
-* **Akalanka Jayawardhane**
-* Chathumini Atthanayake
-* aathif99
+| Name | Registration Number | Index Number |
+|------|---------------------|--------------|
+| Akalanka Jayawardhane | ICT/2022/130 | 5731 |
+| Chathumini Aththanayake | ICT/2022/131 | 5732 |
+| M.T.M Aathif | ICT/2022/129 | 5730 |
 
 ---
 
