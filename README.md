@@ -18,6 +18,7 @@ This project was developed as part of an **IT undergraduate coursework project**
 * 📍 Enter delivery address
 * 📦 Place order
 * 🗂 Order saved in SQLite database
+* 📜 View order history
 * 👤 User profile and logout
 
 ---
@@ -87,28 +88,34 @@ The app uses **SQLite database** with the following tables:
 FoodGo
 │
 ├── activity
-│   ├── LoginActivity
-│   ├── RegisterActivity
-│   ├── MainActivity
-│   ├── FoodDetailActivity
 │   ├── CheckoutActivity
-│   └── OrderSuccessActivity
+│   ├── FoodDetailActivity
+│   ├── LoginActivity
+│   ├── MainActivity
+│   ├── OrderHistoryActivity
+│   ├── OrderSuccessActivity
+│   ├── RegisterActivity
+│   └── SplashActivity
 │
 ├── fragments
-│   ├── HomeFragment
 │   ├── CartFragment
+│   ├── FoodListFragment
+│   ├── HomeFragment
 │   └── ProfileFragment
 │
 ├── adapters
+│   ├── CartAdapter
+│   ├── CategoryAdapter
 │   ├── FoodAdapter
-│   └── CartAdapter
+│   └── OrderAdapter
 │
 ├── database
 │   └── DatabaseHelper
 │
 └── models
-    ├── FoodItem
     ├── CartItem
+    ├── FoodItem
+    ├── Order
     └── User
 ```
 
@@ -153,7 +160,6 @@ git clone https://github.com/AkalankaJayawardhane/FoodGo.git
 ## 📌 Future Improvements
 
 * Online payment integration
-* Order history screen
 * Admin panel for food management
 * Push notifications
 * API-based backend
